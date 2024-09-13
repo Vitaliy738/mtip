@@ -79,7 +79,7 @@ export const Lab2 = () => {
                 </Text>
 
                 <Image
-                    src="src/images/page1.png"
+                    src="/images/page1.png"
                     alt="Зображення"
                     className="transition-transform transform hover:scale-110 duration-500 rounded-md shadow-md"
                     boxSize="240px"
@@ -87,7 +87,7 @@ export const Lab2 = () => {
             </VStack>
             
             <HStack>
-                <Link fontWeight='bold' fontSize='24' href='#'>Коди програми</Link>
+                <Link fontWeight='bold' fontSize='24' href='https://github.com/Vitaliy738/mtip/blob/master/src/components/Lab2.jsx'>Коди програми</Link>
             </HStack>
         </>
     );
