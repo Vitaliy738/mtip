@@ -79,7 +79,7 @@ export const Lab2 = () => {
                 </Text>
 
                 <Image
-                    src="/images/page1.png"
+                    src="./assets/page1.png"
                     alt="Зображення"
                     className="transition-transform transform hover:scale-110 duration-500 rounded-md shadow-md"
                     boxSize="240px"
