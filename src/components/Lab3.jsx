@@ -1,10 +1,9 @@
-import {Button, HStack, Input, Link, VStack} from "@chakra-ui/react";
+import {Button, HStack, Input, Link, Text, VStack} from "@chakra-ui/react";
 import {useState} from "react";
 
 export const Lab3 = () => {
     const [input, setInput] = useState('');
 
-    // Обчислює результат "на льоту" без зміни виразу
     const handleClick = (value) => {
         const newInput = input + value;
         setInput(newInput);
@@ -23,7 +22,14 @@ export const Lab3 = () => {
     };
 
     return (
-        <VStack className="bg-gray-100 p-8 rounded shadow-md" spacing={4}>
+        <>
+            <VStack spacing={4} align="stretch" className="p-6">
+                <Text fontSize="xl" fontWeight="bold">Завдання:</Text>
+                <Text>
+                    Калькулятор на чотири дії (з кнопками, що натискаються).
+                </Text>
+            </VStack>
+            <VStack className="bg-gray-100 p-8 rounded shadow-md" spacing={4}>
             <VStack spacing={2}>
                 <HStack>
                     <Input
@@ -35,7 +41,7 @@ export const Lab3 = () => {
                     />
                     <Button colorScheme="red" onClick={handleClear}>C</Button>
                 </HStack>
-                
+
                 <HStack>
                     <Button onClick={() => handleClick('1')}>1</Button>
                     <Button onClick={() => handleClick('2')}>2</Button>
@@ -61,10 +67,11 @@ export const Lab3 = () => {
                     <Button onClick={handleEqual}>=</Button>
                 </HStack>
             </VStack>
-            
+
             <VStack className="mt-6">
                 <Link fontWeight='bold' fontSize='24' href='https://github.com/Vitaliy738/mtip/blob/master/src/components/Lab3.jsx'>Коди програми</Link>
             </VStack>
         </VStack>
+        </>
     );
 }
