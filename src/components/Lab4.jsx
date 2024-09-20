@@ -10,7 +10,7 @@ export const Lab4 = () => {
                     Форма реєстрації
                 </Link>
 
-                <Link fontSize="xl" fontWeight="bold" as={RouterLink} to='/mtip/lab4/registration' m-5>
+                <Link fontSize="xl" fontWeight="bold" as={RouterLink} to='/mtip/lab4/cyrillic' m-5>
                     Регулярний вираз
                 </Link>
             </VStack>
