@@ -23,7 +23,7 @@ export const Lab2 = () => {
                 </Text>
             </VStack>
 
-            <HStack
+            <VStack
                 align="start"
                 spacing={8}
                 className="w-128 text-black p-4 bg-gray-100 rounded-md"
@@ -69,7 +69,7 @@ export const Lab2 = () => {
                         </VStack>
                     )}
                 </Box>
-            </HStack>
+            </VStack>
 
             <VStack align="start" spacing={4} className="text-black p-6 bg-gray-100 mt-6 rounded-md">
                 <Text fontSize="xl" fontWeight="bold">Завадння 2:</Text>
