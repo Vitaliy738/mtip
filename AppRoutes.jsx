@@ -1,6 +1,7 @@
 import {Lab2} from "./src/components/Lab2.jsx";
 import {Lab3} from "./src/components/Lab3.jsx";
 import {CyrillicWordsFinder, Lab4, RegistrationForm} from "./src/components/Lab4.jsx";
+import {Lab6} from "./src/components/Lab6.jsx";
 
 const AppRoutes = [
     {
@@ -29,6 +30,10 @@ const AppRoutes = [
     {
         path: '/mtip/lab4/cyrillic',
         element: <CyrillicWordsFinder />
+    },
+    {
+        path: '/mtip/lab6',
+        element: <Lab6 />
     },
 ];
 
