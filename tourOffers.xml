@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tourOffers>
+    <offer>
+        <country>France</country>
+        <tourType>Excursion</tourType>
+        <description>Visit the Eiffel Tower and Louvre Museum.</description>
+        <hotTour>true</hotTour>
+        <price>1500</price>
+        <quantity>20</quantity>
+    </offer>
+    <offer>
+        <country>Italy</country>
+        <tourType>Individual Tour</tourType>
+        <description>Explore the ancient city of Rome.</description>
+        <hotTour>false</hotTour>
+        <price>1200</price>
+        <quantity>15</quantity>
+    </offer>
+    <offer>
+        <country>Spain</country>
+        <tourType>Weekend Tour</tourType>
+        <description>Relax on the beaches of Barcelona.</description>
+        <hotTour>true</hotTour>
+        <price>900</price>
+        <quantity>10</quantity>
+    </offer>
+    <offer>
+        <country>Germany</country>
+        <tourType>Excursion</tourType>
+        <description>Discover the history of Berlin.</description>
+        <hotTour>false</hotTour>
+        <price>1100</price>
+        <quantity>25</quantity>
+    </offer>
+</tourOffers>
