@@ -1,36 +1,56 @@
-import {Box, Link, Text, VStack} from "@chakra-ui/react";
-import { useState } from "react";
+import 'react';
+import $ from 'jquery';
+import {Link, VStack, Text, Box} from "@chakra-ui/react";
 
 export const Lab6 = () => {
-    const [step, setStep] = useState(0);
-
     const handleAnimate = () => {
-        const timeouts = [];
+        const $text = $('#animated-text');
 
         // Змінює регістр та рухається вправо і вниз через 1 сек
-        timeouts.push(setTimeout(() => setStep(1), 1000));
+        $text.delay(1000).queue(function(next) {
+            $(this).css({
+                'text-transform': 'lowercase',
+                'transform': 'translate(50px, 70px)'
+            });
+            next();
+        });
 
         // Стає жирним через 2 сек
-        timeouts.push(setTimeout(() => setStep(2), 2000));
+        $text.delay(1000).queue(function(next) {
+            $(this).css('font-weight', 'bold');
+            next();
+        });
 
         // Рухається вліво і вниз через 3 сек
-        timeouts.push(setTimeout(() => setStep(3), 3000));
+        $text.delay(1000).queue(function(next) {
+            $(this).css('transform', 'translate(-20px, 80px)');
+            next();
+        });
 
         // Стає підкресленим через 4 сек
-        timeouts.push(setTimeout(() => setStep(4), 4000));
+        $text.delay(1000).queue(function(next) {
+            $(this).css('text-decoration', 'underline');
+            next();
+        });
 
         // Плавно зникає через 5 сек
-        timeouts.push(setTimeout(() => setStep(5), 5000));
+        $text.delay(1000).fadeOut();
 
         // Повернення до початкового стану через 7 сек (через 2 секунди після зникнення)
-        timeouts.push(setTimeout(() => setStep(0), 7000));
-
-        // Очищення таймерів при завершенні
-        return () => timeouts.forEach(clearTimeout);
+        $text.delay(2000).queue(function(next) {
+            $(this).css({
+                'text-transform': '',
+                'transform': 'translate(0, 0)',
+                'font-weight': '',
+                'text-decoration': '',
+                'opacity': 1
+            }).fadeIn();
+            next();
+        });
     };
 
     return (
-        <>
+        <Box className="p-6 m-5">
             <Box className="p-6 bg-white rounded-md shadow-md m-5">
                 <VStack spacing={4} align="stretch" className="p-6">
                     <Text fontSize="xl" fontWeight="bold">Завдання:</Text>
@@ -54,30 +74,19 @@ export const Lab6 = () => {
             </Box>
 
             <Box className="p-6 bg-white rounded-md shadow-md m-5">
-                <VStack spacing={4} align="stretch" className="p-6">
-                    <div className="relative h-64 flex flex-col items-center justify-center">
-                        <span
-                            className={`
-                              transition-all duration-1000 ease-in-out
-                              ${step >= 1 ? "lowercase transform translate-x-12 translate-y-16" : ""}
-                              ${step >= 2 ? "font-bold" : ""}
-                              ${step >= 3 ? "transform translate-x-4 translate-y-32" : ""}
-                              ${step >= 4 ? "underline" : ""}
-                              ${step >= 5 ? "opacity-0" : "opacity-100"}
-                          `}
-                            style={{fontSize: "40px"}}
-                        >
-                          ІСПР
-                        </span>
-                        <button
-                            className="mt-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-700"
-                            onClick={handleAnimate}
-                        >
-                            Запустити анімацію
-                        </button>
-                    </div>
-                </VStack>
+                <span
+                    id="animated-text"
+                    style={{ fontSize: '40px', display: 'block' }}
+                >
+                    ІСПР
+                </span>
+                <button
+                    className="mt-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+                    onClick={handleAnimate}
+                >
+                    Запустити анімацію
+                </button>
             </Box>
-        </>
+        </Box>
     );
 }

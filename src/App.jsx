@@ -27,8 +27,23 @@ function App() {
                             <RouterLink to="/mtip/lab4" className="hover:text-gray-400">
                                 Лабораторна робота 4
                             </RouterLink>
+                            <RouterLink to="/mtip/lab5" className="hover:text-gray-400">
+                                Лабораторна робота 5
+                            </RouterLink>
                             <RouterLink to="/mtip/lab6" className="hover:text-gray-400">
                                 Лабораторна робота 6
+                            </RouterLink>
+                            <RouterLink to="/mtip/lab7" className="hover:text-gray-400">
+                                Лабораторна робота 7
+                            </RouterLink>
+                            <RouterLink to="/mtip/lab8" className="hover:text-gray-400">
+                                Лабораторна робота 8
+                            </RouterLink>
+                            <RouterLink to="/mtip/lab9" className="hover:text-gray-400">
+                                Лабораторна робота 9
+                            </RouterLink>
+                            <RouterLink to="/mtip/lab10" className="hover:text-gray-400">
+                                Лабораторна робота 10
                             </RouterLink>
                         </VStack>
                     </Box>
