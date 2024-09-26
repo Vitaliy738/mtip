@@ -7,7 +7,7 @@ export const Lab7 = () => {
     useEffect(() => {
         const fetchXMLData = async () => {
             try {
-                const response = await fetch('src/tourOffers.xml'); // Шлях до XML-файлу
+                const response = await fetch('./tourOffers.xml'); // Шлях до XML-файлу
                 const xmlText = await response.text();
 
                 // Парсинг XML

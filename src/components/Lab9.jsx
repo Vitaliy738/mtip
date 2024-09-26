@@ -27,9 +27,9 @@ export const Lab9 = () => {
         // Завантажити XML та XSLT файли
         const loadXmlAndXsl = async () => {
             try {
-                const xmlDataResponse = await fetch('src/tourOffers.xml');
-                const xmlResponse = await fetch('src/tourOffers_9.xml');
-                const xslResponse = await fetch('src/tourOffers_9.xsl');
+                const xmlDataResponse = await fetch('./tourOffers.xml');
+                const xmlResponse = await fetch('./tourOffers_9.xml');
+                const xslResponse = await fetch('./tourOffers_9.xsl');
 
                 const xmlData = await xmlDataResponse.text();
                 const xmlText = await xmlResponse.text();
