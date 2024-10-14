@@ -10,73 +10,67 @@ export const Lab8 = () => {
         const xml = `
         <?xml version="1.0" encoding="UTF-8"?>
         <tourOffers>
-            <offer>
-                <country>Франція</country>
-                <tourType>Екскурсія</tourType>
-                <description>Неймовірна екскурсія по Парижу</description>
+            <tour>
+                <country>France</country>
+                <type>Excursion</type>
+                <description>5-day tour of Paris, including visits to the Eiffel Tower and the Louvre.</description>
                 <hotTour>true</hotTour>
-                <price>1500</price>
-                <quantity>10</quantity>
-            </offer>
-            <offer>
-                <country>Італія</country>
-                <tourType>Індивідуальний тур</tourType>
-                <description>Приватний тур по Тоскані</description>
+                <price>500</price>
+                <quantity>20</quantity>
+            </tour>
+            <tour>
+                <country>Italy</country>
+                <type>Individual Tour</type>
+                <description>Romantic weekend in Venice.</description>
                 <hotTour>false</hotTour>
-                <price>2000</price>
-                <quantity>5</quantity>
-            </offer>
-            <offer>
-                <country>Греція</country>
-                <tourType>Тур вихідного дня</tourType>
-                <description>Відпочинок на пляжах Криту</description>
+                <price>700</price>
+                <quantity>15</quantity>
+            </tour>
+            <tour>
+                <country>Greece</country>
+                <type>Weekend Tour</type>
+                <description>3-day beach getaway in Santorini.</description>
                 <hotTour>true</hotTour>
-                <price>1200</price>
-                <quantity>8</quantity>
-            </offer>
-        </tourOffers>
-        `;
+                <price>400</price>
+                <quantity>25</quantity>
+            </tour>
+        </tourOffers>`;
         setXml(xml);
         
         const xmlSchema = `
         <?xml version="1.0" encoding="UTF-8"?>
         <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-        
-            <xs:element name="tourOffers">
-                <xs:complexType>
+          <xs:element name="tourOffers">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="tour" maxOccurs="unbounded">
+                  <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="offer" maxOccurs="unbounded">
-                            <xs:complexType>
-                                <xs:sequence>
-                                    <xs:element name="country" type="xs:string"/>
-                                    <xs:element name="tourType" type="xs:string"/>
-                                    <xs:element name="description" type="xs:string"/>
-                                    <xs:element name="hotTour" type="xs:boolean"/>
-                                    <xs:element name="price" type="xs:decimal"/>
-                                    <xs:element name="quantity" type="xs:integer"/>
-                                </xs:sequence>
-                            </xs:complexType>
-                        </xs:element>
+                      <xs:element name="country" type="xs:string"/>
+                      <xs:element name="type" type="xs:string"/>
+                      <xs:element name="description" type="xs:string"/>
+                      <xs:element name="hotTour" type="xs:boolean"/>
+                      <xs:element name="price" type="xs:decimal"/>
+                      <xs:element name="quantity" type="xs:int"/>
                     </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-        
-        </xs:schema>
-        `;
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:schema>`;
         setXmlSchema(xmlSchema);
 
         const dtdSchema = `
         <!DOCTYPE tourOffers [
-        <!ELEMENT tourOffers (offer+)>
-        <!ELEMENT offer (country, tourType, description, hotTour, price, quantity)>
+        <!ELEMENT tourOffers (tour+)>
+        <!ELEMENT tour (country, type, description, hotTour, price, quantity)>
         <!ELEMENT country (#PCDATA)>
-        <!ELEMENT tourType (#PCDATA)>
+        <!ELEMENT type (#PCDATA)>
         <!ELEMENT description (#PCDATA)>
         <!ELEMENT hotTour (#PCDATA)>
         <!ELEMENT price (#PCDATA)>
-        <!ELEMENT quantity (#PCDATA)>
-        ]>
-        `;
+        <!ELEMENT quantity (#PCDATA)>]>`;
         setDtdSchema(dtdSchema);
 
     }, []);
@@ -95,6 +89,30 @@ export const Lab8 = () => {
                             href="https://github.com/Vitaliy738/mtip/blob/master/src/components/Lab8.jsx"
                         >
                             Коди програми
+                        </Link>
+
+                        <Link
+                            fontWeight="bold"
+                            fontSize="24"
+                            href="https://github.com/Vitaliy738/mtip/blob/master/public/tourOffers.xml"
+                        >
+                            XML документ
+                        </Link>
+
+                        <Link
+                            fontWeight="bold"
+                            fontSize="24"
+                            href="https://github.com/Vitaliy738/mtip/blob/master/public/tourOffers.dtd"
+                        >
+                            DTD схема
+                        </Link>
+
+                        <Link
+                            fontWeight="bold"
+                            fontSize="24"
+                            href="https://github.com/Vitaliy738/mtip/blob/master/public/tourOffers.xsd"
+                        >
+                            XML схема
                         </Link>
                     </VStack>
                 </VStack>
