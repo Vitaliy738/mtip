@@ -167,6 +167,17 @@ export const Lab7 = () => {
             </div>
 
             <div className="p-6 bg-white rounded-md shadow-md m-5">
+                <Text fontSize="xl" fontWeight="bold">Дінамічна модель:</Text>
+                <Box overflowX="auto">
+                    <Image
+                        src='./dinamic_model_lab7.excalidraw.svg'
+                        alt="Статична модель XML документу"
+                        className="rounded-md shadow-md max-h-xl max-w-xl"
+                    />
+                </Box>
+            </div>
+
+            <div className="p-6 bg-white rounded-md shadow-md m-5">
                 <Text fontSize="xl" fontWeight="bold">XML документ:</Text>
                 <Box overflowX="auto">
                     <pre style={{whiteSpace: 'pre-wrap'}}>
@@ -181,7 +192,7 @@ export const Lab7 = () => {
                 <Box overflowX="auto">
                     <Table variant="simple">
                         <Thead>
-                        <Tr>
+                            <Tr>
                                 <Th>#</Th>
                                 <Th>Country</Th>
                                 <Th>Type</Th>
