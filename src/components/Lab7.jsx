@@ -167,7 +167,7 @@ export const Lab7 = () => {
             </div>
 
             <div className="p-6 bg-white rounded-md shadow-md m-5">
-                <Text fontSize="xl" fontWeight="bold">Дінамічна модель:</Text>
+                <Text fontSize="xl" fontWeight="bold">Динамічна модель:</Text>
                 <Box overflowX="auto">
                     <Image
                         src='./dinamic_model_lab7.excalidraw.svg'
@@ -185,37 +185,6 @@ export const Lab7 = () => {
                             {xmlCode}
                         </Code>
                     </pre>
-                </Box>
-            </div>
-
-            <div className="p-6 bg-white rounded-md shadow-md m-5">
-                <Box overflowX="auto">
-                    <Table variant="simple">
-                        <Thead>
-                            <Tr>
-                                <Th>#</Th>
-                                <Th>Country</Th>
-                                <Th>Type</Th>
-                                <Th>Description</Th>
-                                <Th>Hot tour</Th>
-                                <Th>Price</Th>
-                                <Th>Quantity</Th>
-                            </Tr>
-                        </Thead>
-                        <Tbody>
-                            {offers.map((offer, index) => (
-                                <Tr key={index}>
-                                    <Td>{index + 1}</Td>
-                                    <Td>{offer.country}</Td>
-                                    <Td>{offer.type}</Td>
-                                    <Td>{offer.description}</Td>
-                                    <Td>{offer.hotTour}</Td>
-                                    <Td>{offer.price}</Td>
-                                    <Td>{offer.quantity}</Td>
-                                </Tr>
-                            ))}
-                        </Tbody>
-                    </Table>
                 </Box>
             </div>
         </Box>
