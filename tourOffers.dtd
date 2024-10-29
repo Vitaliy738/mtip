@@ -1,8 +1,19 @@
-<!ELEMENT tourOffers (tour+)>
-<!ELEMENT tour (country, type, description, hotTour, price, quantity)>
-<!ELEMENT country (#PCDATA)>
-<!ELEMENT type (#PCDATA)>
-<!ELEMENT description (#PCDATA)>
-<!ELEMENT hotTour (#PCDATA)>
-<!ELEMENT price (#PCDATA)>
-<!ELEMENT quantity (#PCDATA)>
+<!DOCTYPE tourOffers [
+        <!ELEMENT tourOffers (tour+)>
+        <!ELEMENT tour (country, type, description, hotTour, price, quantity)>
+
+        <!ELEMENT country (#PCDATA)>
+        <!ELEMENT type (#PCDATA)>
+        <!ELEMENT description (#PCDATA)>
+        <!ELEMENT hotTour (#PCDATA)>
+        <!ELEMENT price (#PCDATA)>
+        <!ELEMENT quantity (#PCDATA)>
+
+        <!ATTLIST tour
+                id ID #REQUIRED
+                season CDATA #IMPLIED
+                agency CDATA #IMPLIED>
+
+        <!ATTLIST price
+                currency CDATA "USD">
+        ]>
