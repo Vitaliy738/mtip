@@ -40,6 +40,8 @@ export const Lab8 = () => {
         const xmlSchema = `
         <?xml version="1.0" encoding="UTF-8"?>
         <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        
+          <!-- Кореневий елемент -->
           <xs:element name="tourOffers">
             <xs:complexType>
               <xs:sequence>
@@ -50,9 +52,20 @@ export const Lab8 = () => {
                       <xs:element name="type" type="xs:string"/>
                       <xs:element name="description" type="xs:string"/>
                       <xs:element name="hotTour" type="xs:boolean"/>
-                      <xs:element name="price" type="xs:decimal"/>
+                      <xs:element name="price">
+                        <xs:complexType>
+                          <xs:simpleContent>
+                            <xs:extension base="xs:decimal">
+                              <xs:attribute name="currency" type="xs:string" default="USD"/>
+                            </xs:extension>
+                          </xs:simpleContent>
+                        </xs:complexType>
+                      </xs:element>
                       <xs:element name="quantity" type="xs:int"/>
                     </xs:sequence>
+                    <xs:attribute name="id" type="xs:ID" use="required"/>
+                    <xs:attribute name="season" type="xs:string"/>
+                    <xs:attribute name="agency" type="xs:string"/>
                   </xs:complexType>
                 </xs:element>
               </xs:sequence>
@@ -63,14 +76,24 @@ export const Lab8 = () => {
 
         const dtdSchema = `
         <!DOCTYPE tourOffers [
-        <!ELEMENT tourOffers (tour+)>
-        <!ELEMENT tour (country, type, description, hotTour, price, quantity)>
-        <!ELEMENT country (#PCDATA)>
-        <!ELEMENT type (#PCDATA)>
-        <!ELEMENT description (#PCDATA)>
-        <!ELEMENT hotTour (#PCDATA)>
-        <!ELEMENT price (#PCDATA)>
-        <!ELEMENT quantity (#PCDATA)>]>`;
+          <!ELEMENT tourOffers (tour+)>
+          <!ELEMENT tour (country, type, description, hotTour, price, quantity)>
+          
+          <!ELEMENT country (#PCDATA)>
+          <!ELEMENT type (#PCDATA)>
+          <!ELEMENT description (#PCDATA)>
+          <!ELEMENT hotTour (#PCDATA)>
+          <!ELEMENT price (#PCDATA)>
+          <!ELEMENT quantity (#PCDATA)>
+          
+          <!ATTLIST tour
+            id ID #REQUIRED
+            season CDATA #IMPLIED
+            agency CDATA #IMPLIED>
+          
+          <!ATTLIST price
+            currency CDATA "USD">
+        ]>`;
         setDtdSchema(dtdSchema);
 
     }, []);
