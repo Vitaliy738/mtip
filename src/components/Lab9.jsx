@@ -113,6 +113,22 @@ export const Lab9 = () => {
                         >
                             Коди програми
                         </Link>
+
+                        <Link
+                            fontWeight="bold"
+                            fontSize="24"
+                            href="https://github.com/Vitaliy738/mtip/blob/master/public/tourOffers.xml"
+                        >
+                            XML документ
+                        </Link>
+
+                        <Link
+                            fontWeight="bold"
+                            fontSize="24"
+                            href="https://github.com/Vitaliy738/mtip/blob/master/public/tourOffers.xsl"
+                        >
+                            XSL документ
+                        </Link>
                     </VStack>
                 </VStack>
             </Box>
