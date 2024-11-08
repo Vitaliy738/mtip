@@ -1,83 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tourOffers>
     <tour>
+        <id>T1</id>
         <country>France</country>
         <type>Excursion</type>
         <description>5-day tour of Paris, including visits to the Eiffel Tower and the Louvre.</description>
         <hotTour>true</hotTour>
-        <price>500</price>
+        <price currency="USD">500</price>
         <quantity>20</quantity>
+        <season>Summer</season>
+        <agency>TravelCo</agency>
     </tour>
     <tour>
+        <id>T2</id>
         <country>Italy</country>
         <type>Individual Tour</type>
         <description>Romantic weekend in Venice.</description>
         <hotTour>false</hotTour>
-        <price>700</price>
+        <price currency="USD">700</price>
         <quantity>15</quantity>
+        <season>Winter</season>
+        <agency>TravelCo</agency>
     </tour>
     <tour>
+        <id>T3</id>
         <country>Greece</country>
         <type>Weekend Tour</type>
         <description>3-day beach getaway in Santorini.</description>
         <hotTour>true</hotTour>
-        <price>400</price>
+        <price currency="USD">400</price>
         <quantity>25</quantity>
+        <season>Summer</season>
+        <agency>TravelCo</agency>
     </tour>
     <tour>
+        <id>T4</id>
         <country>Spain</country>
         <type>Excursion</type>
         <description>7-day tour of Barcelona and Madrid.</description>
         <hotTour>false</hotTour>
-        <price>800</price>
+        <price currency="USD">800</price>
         <quantity>30</quantity>
+        <season>Winter</season>
+        <agency>TravelCo</agency>
     </tour>
     <tour>
+        <id>T5</id>
         <country>Germany</country>
         <type>Excursion</type>
         <description>6-day tour of Berlin, including visits to historical landmarks.</description>
         <hotTour>true</hotTour>
-        <price>650</price>
+        <price currency="USD">650</price>
         <quantity>18</quantity>
+        <season>Summer</season>
+        <agency>TravelCo</agency>
     </tour>
     <tour>
+        <id>T6</id>
         <country>Thailand</country>
         <type>Individual Tour</type>
         <description>10-day exotic vacation in Phuket.</description>
         <hotTour>true</hotTour>
-        <price>1200</price>
+        <price currency="USD">1200</price>
         <quantity>12</quantity>
+        <season>Winter</season>
+        <agency>TravelCo</agency>
     </tour>
     <tour>
+        <id>T7</id>
         <country>Japan</country>
         <type>Excursion</type>
         <description>8-day cultural tour of Tokyo and Kyoto.</description>
         <hotTour>false</hotTour>
-        <price>1500</price>
+        <price currency="USD">1500</price>
         <quantity>22</quantity>
+        <season>Summer</season>
+        <agency>TravelCo</agency>
     </tour>
     <tour>
+        <id>T8</id>
         <country>Australia</country>
         <type>Weekend Tour</type>
         <description>3-day tour of Sydney and the Great Barrier Reef.</description>
         <hotTour>true</hotTour>
-        <price>1800</price>
+        <price currency="USD">1800</price>
         <quantity>10</quantity>
+        <season>Winter</season>
+        <agency>TravelCo</agency>
     </tour>
     <tour>
+        <id>T9</id>
         <country>Canada</country>
         <type>Excursion</type>
         <description>5-day adventure tour in the Canadian Rockies.</description>
         <hotTour>false</hotTour>
-        <price>1100</price>
+        <price currency="USD">1100</price>
         <quantity>16</quantity>
+        <season>Summer</season>
+        <agency>TravelCo</agency>
     </tour>
     <tour>
+        <id>T10</id>
         <country>Mexico</country>
         <type>Weekend Tour</type>
         <description>4-day all-inclusive beach holiday in Cancun.</description>
         <hotTour>true</hotTour>
-        <price>900</price>
+        <price currency="USD">900</price>
         <quantity>20</quantity>
+        <season>Winter</season>
+        <agency>TravelCo</agency>
     </tour>
 </tourOffers>

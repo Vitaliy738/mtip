@@ -1,219 +1,101 @@
 import {
-    Box, Code,
-    Link,
+    Box,
+    Button,
+    Code,
+    Link, Select,
     Tab,
-    Table,
     TabList,
     TabPanel,
-    TabPanels, Tabs,
-    Tbody,
-    Td,
+    TabPanels,
+    Tabs,
     Text,
-    Th,
-    Thead,
-    Tr,
     VStack
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 
 export const Lab9 = () => {
-    const [offersXml, setOffersXml] = useState([]);
-    const [offersXsl, setOffersXsl] = useState([]);
     const [xmlDataCode, setXmlDataCode] = useState("");
-    const [xmlCode, setXmlCode] = useState("");
     const [xslCode, setXslCode] = useState("");
+    const [showHotTours, setShowHotTours] = useState(false);
+    const [filteredTours, setFilteredTours] = useState([]);
+    const [transformedContent, setTransformedContent] = useState("");
 
     useEffect(() => {
-        // Завантажити XML та XSLT файли
-        const loadXmlAndXsl = async () => {
-            try {
-                const xmlDataResponse = await fetch('./tourOffers.xml');
-                const xmlResponse = await fetch('./tourOffers_9.xml');
-                const xslResponse = await fetch('./tourOffers_9.xsl');
-
-                const xmlData = await xmlDataResponse.text();
-                const xmlText = await xmlResponse.text();
-                const xslText = await xslResponse.text();
-
-                const transformedXmlOffers = transformXml(xmlData, xmlText);
-                const transformedXslOffers = transformXml(xmlData, xslText);
-
-                setOffersXml(transformedXmlOffers);
-                setOffersXsl(transformedXslOffers);
-            } catch (error) {
-                console.error("Error loading XML/XSL: ", error);
-            }
-        };
-        
-        setXmlDataCode(`
-        <?xml version="1.0" encoding="UTF-8"?>
-        <tourOffers>
-            <offer>
-                <country>France</country>
-                <tourType>Excursion</tourType>
-                <description>Visit the Eiffel Tower and Louvre Museum.</description>
-                <hotTour>true</hotTour>
-                <price>1500</price>
-                <quantity>20</quantity>
-            </offer>
-            <offer>
-                <country>Italy</country>
-                <tourType>Individual Tour</tourType>
-                <description>Explore the ancient city of Rome.</description>
-                <hotTour>false</hotTour>
-                <price>1200</price>
-                <quantity>15</quantity>
-            </offer>
-            <offer>
-                <country>Spain</country>
-                <tourType>Weekend Tour</tourType>
-                <description>Relax on the beaches of Barcelona.</description>
-                <hotTour>true</hotTour>
-                <price>900</price>
-                <quantity>10</quantity>
-            </offer>
-            <offer>
-                <country>Germany</country>
-                <tourType>Excursion</tourType>
-                <description>Discover the history of Berlin.</description>
-                <hotTour>false</hotTour>
-                <price>1100</price>
-                <quantity>25</quantity>
-            </offer>
-        </tourOffers>`
-        );
-        
-        setXmlCode(`
-            <?xml version="1.0" encoding="UTF-8"?>
-            <xsl:stylesheet version="1.0"
-                            xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-            
-                <xsl:output method="html" indent="yes"/>
-            
-                <xsl:template match="/tourOffers">
-                    <html>
-                        <head>
-                            <title>Туристичні пропозиції</title>
-                        </head>
-                        <body>
-                            <h1>Туристичні пропозиції</h1>
-                            <table border="1">
-                                <tr>
-                                    <th>Країна</th>
-                                    <th>Тип туру</th>
-                                    <th>Опис туру</th>
-                                    <th>Гарячий тур</th>
-                                    <th>Вартість</th>
-                                    <th>Кількість</th>
-                                </tr>
-                                <!-- Додавання записів -->
-                                <xsl:for-each select="offer">
-                                    <tr>
-                                        <td><xsl:value-of select="country"/></td>
-                                        <td><xsl:value-of select="tourType"/></td>
-                                        <td><xsl:value-of select="description"/></td>
-                                        <td><xsl:value-of select="hotTour"/></td>
-                                        <td><xsl:value-of select="price"/></td>
-                                        <td><xsl:value-of select="quantity"/></td>
-                                    </tr>
-                                </xsl:for-each>
-                            </table>
-                        </body>
-                    </html>
-                </xsl:template>
-            </xsl:stylesheet> `
-        );
-
-        setXslCode(`
-            <?xml version="1.0" encoding="UTF-8"?>
-            <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-                <xsl:output method="html" indent="yes"/>
-            
-                <!-- Головний шаблон -->
-                <xsl:template match="/tourOffers">
-                    <html>
-                        <body>
-                            <h2>Гарячі туристичні пропозиції</h2>
-                            <table border="1">
-                                <tr bgcolor="#9acd32">
-                                    <th>Країна</th>
-                                    <th>Тип туру</th>
-                                    <th>Опис</th>
-                                    <th>Вартість</th>
-                                    <th>Кількість</th>
-                                </tr>
-            
-                                <!-- Вибір гарячих турів та сортування за вартістю -->
-                                <xsl:for-each select="offer[hotTour='true']">
-                                    <xsl:sort select="price" data-type="number" order="ascending"/>
-                                    <tr>
-                                        <td><xsl:value-of select="country"/></td>
-                                        <td><xsl:value-of select="tourType"/></td>
-                                        <td><xsl:value-of select="description"/></td>
-                                        <td><xsl:value-of select="hotTour"/></td>
-                                        <td><xsl:value-of select="price"/></td>
-                                        <td><xsl:value-of select="quantity"/></td>
-                                    </tr>
-                                </xsl:for-each>
-                            </table>
-                        </body>
-                    </html>
-                </xsl:template>
-            </xsl:stylesheet>
-
-        `
-        );
-        
-        loadXmlAndXsl();
-    }, []);
-
-    const transformXml = (xmlText, xslText) => {
-        try {
-            const parser = new DOMParser();
-            const xml = parser.parseFromString(xmlText, "text/xml");
-            const xsl = parser.parseFromString(xslText, "text/xml");
-
-            // Створюємо XSLTProcessor
-            const xsltProcessor = new XSLTProcessor();
-            xsltProcessor.importStylesheet(xsl);
-
-            // Виконуємо трансформацію
-            const resultDocument = xsltProcessor.transformToFragment(xml, document);
-
-            // Створюємо тимчасовий контейнер для збереження результатів
-            const tempDiv = document.createElement('div');
-            tempDiv.appendChild(resultDocument);
-
-            // Витягуємо дані з HTML (якщо результати знаходяться в таблиці)
-            const rows = tempDiv.querySelectorAll('tr'); // Отримуємо всі рядки таблиці
-            const transformedData = [];
-
-            rows.forEach((row, index) => {
-                if (index > 0) { // Пропускаємо заголовок таблиці
-                    const columns = row.querySelectorAll('td');
-
-                    // Перевіряємо наявність стовпців
-                    if (columns.length >= 6) {
-                        const offer = {
-                            country: columns[0]?.textContent || '',      // Перевірка наявності елементу
-                            tourType: columns[1]?.textContent || '',
-                            description: columns[2]?.textContent || '',
-                            hotTour: columns[3]?.textContent === 'Так',
-                            price: parseFloat(columns[4]?.textContent || '0'),
-                            quantity: parseInt(columns[5]?.textContent || '0', 10),
-                        };
-                        transformedData.push(offer);
-                    } else {
-                        console.error('Expected at least 6 columns in the row, but found:', columns.length);
-                    }
-                }
+        // Завантаження XML та XSL файлів
+        fetch('./tourOffers.xml')
+            .then(response => response.text())
+            .then(data => {
+                setXmlDataCode(data);
             });
 
-            return transformedData; // Повертаємо масив з об'єктами
-        } catch (error) {
-            console.error("Error during XML transformation:", error);
-            return [];
+        fetch('./tourOffers.xsl')
+            .then(response => response.text())
+            .then(data => {
+                setXslCode(data)
+            });
+    }, []);
+
+    useEffect(() => {
+        if (xslCode) {
+            applyTransformation(xmlDataCode);
         }
+    }, [xslCode, xmlDataCode]);
+
+    const loadXMLString = (xmlString) => {
+        const parser = new DOMParser();
+        console.log(parser.parseFromString(xmlString, "text/xml"));
+        return parser.parseFromString(xmlString, "text/xml");
+    };
+
+    const transformXML = (xml, xsl) => {
+        const xsltProcessor = new XSLTProcessor();
+        xsltProcessor.importStylesheet(xsl);
+        console.log(xsltProcessor.transformToFragment(xml, document));
+        return xsltProcessor.transformToFragment(xml, document);
+    };
+
+    const applyTransformation = (xmlData) => {
+        try {
+            const xml = loadXMLString(xmlData);
+            const xsl = loadXMLString(xslCode);
+            const resultDocument = transformXML(xml, xsl);
+            setTransformedContent(resultDocument);
+        } catch (error) {
+            console.error("Помилка трансформації:", error);
+        }
+    };
+
+    const filterTours = (filterValue) => {
+        const xml = loadXMLString(xmlDataCode);
+        const filteredToursArray = Array.from(xml.getElementsByTagName("tour")).filter(tour => {
+            const hotTour = tour.getElementsByTagName("hotTour")[0].textContent === "true";
+
+            if (filterValue === "hot") {
+                return hotTour;
+            }
+            return true;
+        });
+        setFilteredTours(filteredToursArray); // Зберігаємо відфільтровані тури
+        const filteredXML = createFilteredXML(filteredToursArray);
+        applyTransformation(new XMLSerializer().serializeToString(filteredXML));
+    };
+
+    const createFilteredXML = (tours) => {
+        const xmlString = `<tourOffers>${tours.map(tour => new XMLSerializer().serializeToString(tour)).join('')}</tourOffers>`;
+        return loadXMLString(xmlString);
+    };
+
+    const sortTours = () => {
+        const toursArray = filteredTours.length > 0 ? filteredTours : Array.from(loadXMLString(xmlDataCode).getElementsByTagName("tour"));
+
+        toursArray.sort((a, b) => {
+            const countryA = a.getElementsByTagName("country")[0].textContent;
+            const countryB = b.getElementsByTagName("country")[0].textContent;
+            return countryA.localeCompare(countryB);
+        });
+
+        const sortedXML = createFilteredXML(toursArray);
+        applyTransformation(new XMLSerializer().serializeToString(sortedXML));
     };
 
     return (
@@ -241,7 +123,6 @@ export const Lab9 = () => {
                     <Tabs>
                         <TabList>
                             <Tab>XML</Tab>
-                            <Tab>XML шаблон</Tab>
                             <Tab>XSL шаблон</Tab>
                         </TabList>
 
@@ -250,13 +131,6 @@ export const Lab9 = () => {
                                 <pre style={{whiteSpace: 'pre-wrap'}}>
                                     <Code>
                                         {xmlDataCode}
-                                    </Code>
-                                </pre>
-                            </TabPanel>
-                            <TabPanel>
-                                <pre style={{whiteSpace: 'pre-wrap'}}>
-                                    <Code>
-                                        {xmlCode}
                                     </Code>
                                 </pre>
                             </TabPanel>
@@ -273,62 +147,30 @@ export const Lab9 = () => {
             </Box>
 
             <Box className="p-6 bg-white rounded-md shadow-md m-5">
-                <Text fontSize="xl" fontWeight="bold">XML шаблон:</Text>
-                <Box overflowX="auto">
-                    <Table variant="simple">
-                        <Thead>
-                            <Tr>
-                                <Th>Країна</Th>
-                                <Th>Тип туру</Th>
-                                <Th>Опис туру</Th>
-                                <Th>Гарячий тур</Th>
-                                <Th>Вартість</Th>
-                                <Th>Кількість</Th>
-                            </Tr>
-                        </Thead>
-                        <Tbody>
-                            {offersXml && offersXml.map((offer, index) => (
-                                <Tr key={index}>
-                                    <Td>{offer.country}</Td>
-                                    <Td>{offer.tourType}</Td>
-                                    <Td>{offer.description}</Td>
-                                    <Td>{offer.hotTour ? "Так" : "Ні"}</Td>
-                                    <Td>{offer.price.toFixed(2)}</Td>
-                                    <Td>{offer.quantity}</Td>
-                                </Tr>
-                            ))}
-                        </Tbody>
-                    </Table>
+                <Box>
+                    <Text fontSize="xl" fontWeight="bold">Фільтрація та сортування:</Text>
+                    <Select
+                        value={showHotTours ? "hot" : "all"}
+                        onChange={(e) => {
+                            const value = e.target.value;
+                            setShowHotTours(value === "hot");
+                            filterTours(value);
+                        }}
+                        placeholder="Виберіть параметр для фільтрації"
+                        m="4"
+                    >
+                        <option value="all">Показати всі тури</option>
+                        <option value="hot">Показати тільки гарячі тури</option>
+                    </Select>
+                    <Button onClick={sortTours} colorScheme="green" m="4">Сортувати за країною</Button>
                 </Box>
-            </Box>
 
-            <Box className="p-6 bg-white rounded-md shadow-md m-5">
-                <Text fontSize="xl" fontWeight="bold">XSL шаблон:</Text>
-                <Box overflowX="auto">
-                    <Table variant="simple">
-                        <Thead>
-                            <Tr>
-                                <Th>Країна</Th>
-                                <Th>Тип туру</Th>
-                                <Th>Опис туру</Th>
-                                <Th>Гарячий тур</Th>
-                                <Th>Вартість</Th>
-                                <Th>Кількість</Th>
-                            </Tr>
-                        </Thead>
-                        <Tbody>
-                            {offersXsl && offersXsl.map((offer, index) => (
-                                <Tr key={index}>
-                                    <Td>{offer.country}</Td>
-                                    <Td>{offer.tourType}</Td>
-                                    <Td>{offer.description}</Td>
-                                    <Td>{offer.hotTour ? "Так" : "Ні"}</Td>
-                                    <Td>{offer.price.toFixed(2)}</Td>
-                                    <Td>{offer.quantity}</Td>
-                                </Tr>
-                            ))}
-                        </Tbody>
-                    </Table>
+                <Box id="transformedContent" mt="6">
+                    {transformedContent ? (
+                        <div dangerouslySetInnerHTML={{ __html: new XMLSerializer().serializeToString(transformedContent) }} />
+                    ) : (
+                        <Text>Результати трансформації будуть відображені тут</Text>
+                    )}
                 </Box>
             </Box>
         </Box>
