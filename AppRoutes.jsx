@@ -7,6 +7,8 @@ import {Lab7} from "./src/components/Lab7.jsx";
 import {Lab8} from "./src/components/Lab8.jsx";
 import {Lab9} from "./src/components/Lab9.jsx";
 import Lab10 from "./src/components/lab10.jsx";
+import {Lab22} from "./src/components/Lab22.jsx";
+import {Lab23} from "./src/components/Lab23.jsx";
 
 const AppRoutes = [
     {
@@ -60,6 +62,14 @@ const AppRoutes = [
     {
         path: '/mtip/lab10',
         element: <Lab10 />
+    },
+    {
+        path: '/mtip/lab21',
+        element: <Lab22 />
+    },
+    {
+        path: '/mtip/lab22',
+        element: <Lab23 />
     },
 ];
 
